@@ -4,10 +4,8 @@ const Schema = mongoose.Schema;
 
 const MessageSchema = new Schema({
     author: { type: Schema.Types.ObjectId, ref: "User" },
-    club: { type: Schema.Types.ObjectId, ref: "ClubHouse" },
-    date: { type: Date, required: true },
-    title: { type: String, required: true },
-    message: { type: String, required: true, unique: true },
+    date: { type: Date, default: Date.now, required: true },
+    message: { type: String, required: true },
 });
 
 // Export model
