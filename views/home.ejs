@@ -11,6 +11,15 @@
     <% if (user) {%>
         <h1>WELCOME BACK <%= user.username %></h1>
         <a href="/log-out">LOG OUT</a>
+        <!-- Messages -->
+        <!-- Formulaire de création de message -->
+        <div class="newMessage">
+            <form action="/newMessage" method="post">
+                <label for="message">Message</label>
+                <input type="text" name="message"/>
+                <button>Post</button>
+            </form>
+        </div>
       <% } else {%> 
         <h1>Hello you're not connected !</h1>
         <div>
