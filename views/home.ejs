@@ -7,14 +7,45 @@
     <title>Document</title>
 </head>
 <body>
-    
     <% if (user) {%>
         <h1>WELCOME BACK <%= user.username %></h1>
         <a href="/log-out">LOG OUT</a>
+        <a href="/join-club">Join the Club House</a>
         <!-- Messages -->
+        <% if (messages && user.usertype === "normal" && user.member == false) {%>
+            <ul class="messages">
+                <% messages.forEach(message => { %>
+                    <li><%= message.message %></li>
+                <% }); %>
+            </ul>
+        <% } %>
+        <% if (messages && user.usertype === "normal" && user.member == true) {%>
+            <ul class="messages">
+                <% messages.forEach(message => { %>
+                    <li><div>
+                        <p>Author : <%= message.author.first_name + " " + message.author.last_name %></p>
+                        <p>Date : <%= message.date %></p>
+                        <p><%= message.message %></p>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
+        <% if (messages && user.usertype === "admin" && user.member == true) {%>
+            <ul class="messages">
+                <% messages.forEach(message => { %>
+                    <li><div>
+                        <p>Author : <%= message.author.first_name + " " + message.author.last_name %></p>
+                        <p>Date : <%= message.date %></p>
+                        <p><%= message.message %></p>
+                        </div><div><a href="/delete/<%= message.id%>">Delete</a></div>
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
         <!-- Formulaire de création de message -->
         <div class="newMessage">
-            <form action="/newMessage" method="post">
+            <form action="" method="post">
                 <label for="message">Message</label>
                 <input type="text" name="message"/>
                 <button>Post</button>
@@ -23,11 +54,8 @@
       <% } else {%> 
         <h1>Hello you're not connected !</h1>
         <div>
-            <a href="/sign-in">Sign In</a><br><a href="/sign-up">Sign Up</a>
+            <a href="/login">Log In</a><br><a href="/register">Register</a>
         </div>
-       <%}%>
-
-   
-    
+    <%}%>
 </body>
 </html>

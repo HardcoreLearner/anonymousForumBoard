@@ -15,7 +15,12 @@
         <input type="text" name="username" placeholder="username" />
         <label for="password">Password</label>
         <input type="password" name="password"/>
+        <label for="cpassword">Confirm Password</label>
+        <input type="password" name="cpassword"/>
         <button>Sign Up</button>
     </form>
+    <% if( typeof(error) !== "undefined") {%>
+        <p><%= error %></p>
+    <% } %>
 </body>
 </html>

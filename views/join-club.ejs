@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Club</title>
+</head>
+<body>
+    <a href="/">Go Back to Home Page</a>
+    <h1>Guess the password to join the club</h1>
+    <p>Here at Club House we only accept the most elite as members of our communication board. In order to acknowledge them and their usernames we give an enigm to answer.</p>
+    <p>But be assured that only the top 1% of the population can answer it.</p>
+
+    <h2>Solve this riddle</h2>
+    <form action="" method="post">
+        <label for="passcode">What is greater than God, more evil than the devil, the poor have it, the rich need it, and if you eat it, you'll die?</label>
+        <input type="text" name="passcode" placeholder="Password">
+        <button type="submit">Submit</button>
+    </form>
+
+    <% if (message) {%>
+        <p><%= message%></p>
+    <% } %>
+</body>
+</html>

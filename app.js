@@ -14,6 +14,8 @@ const User = require('./models/user');
 
 const authRouter = require("./routes/authRoutes");
 const homeRouter = require("./routes/homeRoutes");
+const joinRouter = require("./routes/joinRoutes");
+const delRouter = require("./routes/delRoutes");
 
 const app = express();
 
@@ -93,9 +95,9 @@ passport.deserializeUser(async (id, done) => {
   
 app.use(passport.initialize());
 app.use(passport.session());
-app.post("/sign-in", passport.authenticate('local', {
+app.post("/login", passport.authenticate('local', {
       successRedirect: "/",
-      failureRedirect: "/sign-in"
+      failureRedirect: "/login"
   })
 );
 app.get("/log-out", (req, res, next) => {
@@ -110,6 +112,8 @@ app.get("/log-out", (req, res, next) => {
 // routes
 app.use(authRouter);
 app.use(homeRouter);
+app.use(joinRouter);
+app.use(delRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

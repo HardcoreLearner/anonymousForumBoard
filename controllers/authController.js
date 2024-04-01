@@ -2,15 +2,19 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 
 
-exports.signup_get = (req, res) => {
-    res.render("sign-up");
+exports.register_get = (req, res) => {
+    res.render("register");
 };
-exports.signup_post = async (req, res, next) => {
+exports.register_post = async (req, res, next) => {
     const data = req.body;
     const fname = data.fname;
     const lname = data.lname;
     const username = data.username;
     const password = data.password;
+    const cpassword = data.cpassword;
+    if (password != cpassword) {
+        return res.render("register", {error: "passwords not matching!"});
+    }
     bcrypt.hash(password, 10, async (err, hashedPassword) => {
         if (err) {
             return next(err);
@@ -26,6 +30,6 @@ exports.signup_post = async (req, res, next) => {
         }
     });
 };
-exports.signin_get = (req, res) => {
-    res.render("sign-in");
+exports.login_get = (req, res) => {
+    res.render("login");
 };
